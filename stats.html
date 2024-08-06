@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Browser Stats</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Information</h1>
+    <table>
+        <tr>
+            <th>Property</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>User Agent</td>
+            <td id="userAgent"></td>
+        </tr>
+        <tr>
+            <td>Language</td>
+            <td id="language"></td>
+        </tr>
+        <tr>
+            <td>Screen Resolution</td>
+            <td id="resolution"></td>
+        </tr>
+        <tr>
+            <td>Color Depth</td>
+            <td id="colorDepth"></td>
+        </tr>
+        <tr>
+            <td>Current URL</td>
+            <td id="currentUrl"></td>
+        </tr>
+        <tr>
+            <td>Referrer URL</td>
+            <td id="referrerUrl"></td>
+        </tr>
+        <tr>
+            <td>IP Address</td>
+            <td id="ipAddress"></td>
+        </tr>
+        <tr>
+            <td>Geolocation</td>
+            <td id="geolocation"></td>
+        </tr>
+        <tr>
+            <td>Hostname</td>
+            <td id="hostname"></td>
+        </tr>
+    </table>
+
+    
+
+
+    <script>
+        document.getElementById("userAgent").innerHTML = navigator.userAgent;
+        document.getElementById("language").innerHTML = navigator.language;
+        document.getElementById("resolution").innerHTML = screen.width + "x" + screen.height;
+        document.getElementById("colorDepth").innerHTML = screen.colorDepth;
+        document.getElementById("currentUrl").innerHTML = window.location.href;
+        document.getElementById("referrerUrl").innerHTML = document.referrer;
+        document.getElementById("hostname").innerHTML = window.location.hostname;
+
+        
+
+
+
+
+
+        // Get IP address and geolocation
+        fetch("https://ipapi.co/json/")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("ipAddress").innerHTML = data.ip;
+                document.getElementById("geolocation").innerHTML = data.city + ", " + data.region + ", " + data.country_name;
+            })
+            .catch(error => console.error(error));
+    </script>
+</body>
+</html>
